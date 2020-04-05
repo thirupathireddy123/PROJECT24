@@ -1,0 +1,61 @@
+
+<html>
+    <body>
+    <form action="{% url 'save' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="2">
+            <tr><th>Employee Image Upload</th></tr>
+{#            <tr>#}
+{#                <th>#}
+{#                    <input type="number" placeholder="IDNO" required name="t1">#}
+{#                </th>#}
+{#            </tr>#}
+            <tr>
+                <th>
+                    <input type="text" placeholder="NAME" required name="t2">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Photo : <input type="file" required name="t3">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <button type="submit">Save</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+
+{#    {% if message %}#}
+{#        <h2>{{ message }}</h2>#}
+{#    {% endif %}#}
+
+
+    {% for x in messages %}
+        <h2>{{ x }}</h2>
+    {% endfor %}
+
+    <table align="center" border="0">
+        <tr>
+            <th width="100">IDNO</th>
+            <th width="200">NAME</th>
+            <th width="100">PHOTO</th>
+        </tr>
+
+        {% for x in data %}
+            <tr>
+                <th>{{ x.idno }}</th>
+                <th>{{ x.name }}</th>
+                <th>
+                    <img src="{{ x.photo.url }}" width="50" height="50"/>
+                </th>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+    </body>
+</html>
